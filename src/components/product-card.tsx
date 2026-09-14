@@ -33,9 +33,9 @@ export function ProductCard({ product }: { product: Product }) {
           <h2 className="line-clamp-2 text-lg font-semibold">{product.title}</h2>
           <div className="mt-auto flex items-center justify-between gap-3 pt-3">
             <span className="text-lg font-bold">{formatPrice(product.price)}</span>
-            <span className="inline-flex items-center gap-1 text-sm font-medium">
+            {/* <span className="inline-flex items-center gap-1 text-sm font-medium">
               View <ArrowUpRight className="size-4" />
-            </span>
+            </span> */}
           </div>
         </CardContent>
       </Link>

@@ -45,7 +45,10 @@ export default async function HomePage() {
               Discover thoughtful clothing, home goods, and technology from our
               latest collection.
             </p>
-            <Link href="/product" className={`${buttonVariants({ size: "lg" })} mt-8`}>
+            <Link
+              href="/product"
+              className={`${buttonVariants({ size: "lg" })} mt-8`}
+            >
               Explore collection <ArrowRight className="size-4" />
             </Link>
           </div>
@@ -61,9 +64,13 @@ export default async function HomePage() {
               />
             )}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-24">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-300">Featured / 01</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-300">
+                Featured / 01
+              </p>
               <p className="mt-2 text-xl font-medium">{products[0]?.title}</p>
-              <p className="mt-1 text-sm text-zinc-400">From the M2 / 2026 collection</p>
+              <p className="mt-1 text-sm text-zinc-400">
+                From the M2 / 2026 collection
+              </p>
             </div>
           </div>
         </div>
@@ -75,17 +82,24 @@ export default async function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               New arrivals
             </p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight">Made to be found</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+              Made to be found
+            </h2>
           </div>
           <p className="hidden max-w-xs text-right text-sm leading-6 text-muted-foreground md:block">
             Small details. Good materials. Pieces that earn their place.
           </p>
-          <Link href="/product" className="hidden items-center gap-2 text-sm font-semibold sm:flex">
+          <Link
+            href="/product"
+            className="hidden items-center gap-2 text-sm font-semibold sm:flex"
+          >
             View all <ArrowRight className="size-4" />
           </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => <ProductCard key={product.id} product={product} />)}
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </section>
     </main>
