@@ -7,13 +7,14 @@ import React from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: "About",
   keywords: "cloth, men, women, shirt",
   description: "This is a testing NextJS Web development.",
   openGraph: {
     title: "Testing",
     description: "This is a testing NextJS Web development.",
     // images:[`${image.png}`]
+    images: ["/thumbnail.png"],
   },
 };
 
