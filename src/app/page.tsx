@@ -1,85 +1,72 @@
+import Link from "next/link";
 import Image from "next/image";
-import { Metadata } from "next";
+import { ArrowRight, Sparkles } from "lucide-react";
 
-// static metadata
-export const metadata: Metadata = {
-  title: {
-    template: '%s | M2',
-    default: 'M2',
-  },
-  keywords: "cloth, men, women, shirt",
-  description: "This is a testing NextJS Web development.",
-  openGraph: {
-    title: "Testing",
-    description: "This is a testing NextJS Web development.",
-    // images:[`${image.png}`]
-  },
-};
+import { ProductCard } from "@/components/product-card";
+import { buttonVariants } from "@/components/ui/button";
+import { getProducts } from "@/lib/api";
 
-export default function Home() {
+export default async function HomePage() {
+  const products = await getProducts(8);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-25"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/6 px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/8">
-              page.tsx
-            </code>{" "}
-            file. Hello!
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      <section className="border-b bg-zinc-950 px-6 py-24 text-white sm:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-sm text-zinc-300">
+              <Sparkles className="size-4" /> Curated everyday essentials
+            </div>
+            <h1 className="max-w-3xl text-5xl font-semibold tracking-tight sm:text-7xl">
+              Objects with a little more character.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-400">
+              Discover thoughtful clothing, home goods, and technology from our
+              latest collection.
+            </p>
+            <Link href="/product" className={`${buttonVariants({ size: "lg" })} mt-8`}>
+              Explore collection <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-800">
+            {products[0]?.images[0] && (
+              <Image
+                src={products[0].images[0]}
+                alt={products[0].title}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+            )}
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-24">
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-300">Featured / 01</p>
+              <p className="mt-2 text-xl font-medium">{products[0]?.title}</p>
+              <p className="mt-1 text-sm text-zinc-400">From the M2 / 2026 collection</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mb-10 flex items-end justify-between gap-4 border-b pb-6">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              New arrivals
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight">Made to be found</h2>
+          </div>
+          <p className="hidden max-w-xs text-right text-sm leading-6 text-muted-foreground md:block">
+            Small details. Good materials. Pieces that earn their place.
           </p>
+          <Link href="/product" className="hidden items-center gap-2 text-sm font-semibold sm:flex">
+            View all <ArrowRight className="size-4" />
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-39.5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-3.5 w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-39.5"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {products.map((product) => <ProductCard key={product.id} product={product} />)}
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

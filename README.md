@@ -33,4 +33,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+Open Graph URLs use `NEXT_PUBLIC_SITE_URL` when it is configured. Set it to the deployed site's
+canonical URL (for example, `https://example.com`) when deploying outside Vercel. Vercel
+deployments automatically use `VERCEL_URL` when `NEXT_PUBLIC_SITE_URL` is not set.
+
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
